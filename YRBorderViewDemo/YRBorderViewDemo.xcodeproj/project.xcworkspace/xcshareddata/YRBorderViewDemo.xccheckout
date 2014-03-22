@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FA2F7D1C-4921-4F34-AC7E-83E517EBFEF4</string>
+	<key>IDESourceControlProjectName</key>
+	<string>YRBorderViewDemo</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>CBA91E6A-1A02-4293-B05E-0C27F1E1BE3D</key>
+		<string>https://github.com/YueRuo/YRBorderView.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>YRBorderViewDemo/YRBorderViewDemo.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>CBA91E6A-1A02-4293-B05E-0C27F1E1BE3D</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/YueRuo/YRBorderView.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>CBA91E6A-1A02-4293-B05E-0C27F1E1BE3D</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>CBA91E6A-1A02-4293-B05E-0C27F1E1BE3D</string>
+			<key>IDESourceControlWCCName</key>
+			<string>YRBorderView</string>
+		</dict>
+	</array>
+</dict>
+</plist>
