@@ -20,12 +20,15 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
+    UIColor *viewBackgroundColor=[UIColor grayColor];
+    UIColor *fillColor=[UIColor purpleColor];
+    
     {//demo1给四面添加上边线
         YRBorderView *borderView=[[YRBorderView alloc]initWithFrame:CGRectMake(30, 40, 100, 90)];
         [borderView setNeedLineTop:true left:true bottom:true right:true];
         [borderView setLineColorTop:[UIColor brownColor] left:[UIColor brownColor] bottom:[UIColor brownColor] right:[UIColor brownColor]];//用同一色边线
         [borderView setLineWidthTop:4 left:4 bottom:4 right:4];//设置线的粗细，这里可以随意调整
-        [borderView setBackgroundColor:[UIColor purpleColor]];
+        [borderView setBackgroundColor:viewBackgroundColor];
         [self.view addSubview:borderView];
     }
     
@@ -35,8 +38,8 @@
         [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];//设置不同的颜色
         [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
         [borderView setRadiusTopLeft:28 topRight:26 bottomLeft:0 bottomRight:0];//边线加弧度
-        [borderView setFillColor:[UIColor grayColor]];//增加内部填充颜色
-        [borderView setBackgroundColor:[UIColor purpleColor]];
+        [borderView setFillColor:fillColor];//增加内部填充颜色
+        [borderView setBackgroundColor:viewBackgroundColor];
         [self.view addSubview:borderView];
     }
     
@@ -46,8 +49,8 @@
         [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];
         [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
         [borderView setRadiusTopLeft:18 topRight:18 bottomLeft:0 bottomRight:20];
-        [borderView setFillColor:[UIColor grayColor]];
-        [borderView setBackgroundColor:[UIColor purpleColor]];
+        [borderView setFillColor:fillColor];
+        [borderView setBackgroundColor:viewBackgroundColor];
         [borderView setClipsToBoundsWithBorder:true];//裁剪掉边线外面的区域
         [self.view addSubview:borderView];
     }
@@ -58,8 +61,8 @@
         [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];
         [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
         [borderView setRadiusTopLeft:20 topRight:20 bottomLeft:0 bottomRight:0];
-        [borderView setFillColor:[UIColor grayColor]];
-        [borderView setBackgroundColor:[UIColor purpleColor]];
+        [borderView setFillColor:fillColor];
+        [borderView setBackgroundColor:viewBackgroundColor];
 //        [borderView setClipsToBoundsWithBorder:true];//裁剪掉边线外面的区域
         [self.view addSubview:borderView];
     }
@@ -70,8 +73,8 @@
         [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];
         [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
         [borderView setRadiusTopLeft:50 topRight:50 bottomLeft:50 bottomRight:50];
-        [borderView setFillColor:[UIColor grayColor]];
-        [borderView setBackgroundColor:[UIColor purpleColor]];
+        [borderView setFillColor:fillColor];
+        [borderView setBackgroundColor:viewBackgroundColor];
         [borderView setClipsToBoundsWithBorder:true];//裁剪掉边线外面的区域
         [self.view addSubview:borderView];
     }
