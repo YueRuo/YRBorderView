@@ -171,6 +171,7 @@
         self.needUpdatePathForBorder=true;
     }
     [super setFrame:frame];
+    [self setNeedsDisplay];
 }
 
 -(void)setNeedLineTop:(BOOL)needTop left:(BOOL)needLeft bottom:(BOOL)needBottom right:(BOOL)needRight{
