@@ -44,6 +44,11 @@
 @property (assign,nonatomic) CGFloat radiusTopRight;
 @property (assign,nonatomic) CGFloat radiusBottomLeft;
 @property (assign,nonatomic) CGFloat radiusBottomRight;
+//线段样式，0是实线，否则为线段宽度
+@property (assign,nonatomic) CGFloat lineDashTop;
+@property (assign,nonatomic) CGFloat lineDashLeft;
+@property (assign,nonatomic) CGFloat lineDashRight;
+@property (assign,nonatomic) CGFloat lineDashBottom;
 
 //内部填充颜色
 @property (retain,nonatomic) UIColor *fillColor;
@@ -54,5 +59,6 @@
 -(void)setLineWidthTop:(CGFloat)widthTop left:(CGFloat)widthLeft bottom:(CGFloat)widthBottom right:(CGFloat)widthRight;
 -(void)setLineColorTop:(UIColor *)colorTop left:(UIColor *)colorLeft bottom:(UIColor *)colorBottom right:(UIColor *)colorRight;
 -(void)setRadiusTopLeft:(CGFloat)topLeft topRight:(CGFloat)topRight bottomLeft:(CGFloat)bottomLeft bottomRight:(CGFloat)bottomRight;
+-(void)setLineDashTop:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right;
 
 @end

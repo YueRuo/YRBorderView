@@ -36,17 +36,17 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        _lineWidthTop=0.5;
-        _lineWidthLeft=0.5;
-        _lineWidthBottom=0.5;
-        _lineWidthRight=0.5;
+        _lineWidthTop = 0.5;
+        _lineWidthLeft = 0.5;
+        _lineWidthBottom = 0.5;
+        _lineWidthRight = 0.5;
         
-        _needLineTop=true;
-        _needLineLeft=true;
-        _needLineBottom=true;
-        _needLineRight=true;
+        _needLineTop = true;
+        _needLineLeft = true;
+        _needLineBottom = true;
+        _needLineRight = true;
         
-        _needUpdatePathForBorder=true;
+        _needUpdatePathForBorder = true;
         
         [self setUserInteractionEnabled:false];
         [self setBackgroundColor:[UIColor clearColor]];
@@ -54,11 +54,11 @@
     return self;
 }
 -(void)dealloc{
-    self.lineColorBottom=nil;
-    self.lineColorLeft=nil;
-    self.lineColorRight=nil;
-    self.lineColorTop=nil;
-    self.pathForBorder=nil;
+    self.lineColorBottom = nil;
+    self.lineColorLeft = nil;
+    self.lineColorRight = nil;
+    self.lineColorTop = nil;
+    self.pathForBorder = nil;
 #if ! __has_feature(objc_arc)
     [super dealloc];
 #endif
@@ -70,18 +70,17 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
+//    CGFloat startX = 0;
+//    CGFloat endX = self.frame.size.width;
+//    CGFloat startY = 0;
+//    CGFloat endY = self.frame.size.height;
     
-//    CGFloat startX=0;
-//    CGFloat endX=self.frame.size.width;
-//    CGFloat startY=0;
-//    CGFloat endY=self.frame.size.height;
+    CGFloat halfLineWidthTop = _lineWidthTop/2;
+    CGFloat halfLineWidthLeft = _lineWidthLeft/2;
+    CGFloat halfLineWidthBottom = _lineWidthBottom/2;
+    CGFloat halfLineWidthRight = _lineWidthRight/2;
     
-    CGFloat halfLineWidthTop=_lineWidthTop/2;
-    CGFloat halfLineWidthLeft=_lineWidthLeft/2;
-    CGFloat halfLineWidthBottom=_lineWidthBottom/2;
-    CGFloat halfLineWidthRight=_lineWidthRight/2;
-    
-    CGContextRef context=UIGraphicsGetCurrentContext();
+    CGContextRef context = UIGraphicsGetCurrentContext();
     CGContextClearRect(context, self.bounds);
     CGContextSetFillColorWithColor(context, self.backgroundColor.CGColor);
     CGContextFillRect(context, self.bounds);
@@ -89,11 +88,17 @@
     //填充背景
     if (_fillColor) {
         CGContextSetFillColorWithColor(context, _fillColor.CGColor);
-        UIBezierPath *bezierPath=[self bezierPathForBorder];
+        UIBezierPath *bezierPath = [self bezierPathForBorder];
         [bezierPath fill];
     }
     //画线
     if (_needLineTop) {
+        if(_lineDashTop){
+            CGFloat lengths[] = {_lineDashTop,_lineDashTop};
+            CGContextSetLineDash(context, 0, lengths,2);
+        }else{
+            CGContextSetLineDash(context, 0, 0, 0);
+        }
         CGContextSetLineWidth(context, _lineWidthTop);
         CGContextSetStrokeColorWithColor(context, (_lineColorTop?_lineColorTop:[UIColor blackColor]).CGColor);
         CGContextAddArc(context, self.frame.size.width-_radiusTopRight, _radiusTopRight, _radiusTopRight-halfLineWidthTop, -M_PI_4+(_needLineRight?0:M_PI_4), -M_PI_2, 1);
@@ -103,6 +108,12 @@
         CGContextStrokePath(context);
     }
     if (_needLineLeft) {
+        if(_lineDashLeft){
+            CGFloat lengths[] = {_lineDashLeft,_lineDashLeft};
+            CGContextSetLineDash(context, 0, lengths,2);
+        }else{
+            CGContextSetLineDash(context, 0, 0, 0);
+        }
         CGContextSetLineWidth(context, _lineWidthLeft);
         CGContextSetStrokeColorWithColor(context, (_lineColorLeft?_lineColorLeft:[UIColor blackColor]).CGColor);
         CGContextAddArc(context, _radiusTopLeft, _radiusTopLeft, _radiusTopLeft-halfLineWidthLeft, -M_PI, -M_PI_2-M_PI_4+(_needLineTop?0:M_PI_4), 0);
@@ -112,6 +123,12 @@
         CGContextStrokePath(context);
     }
     if (_needLineBottom) {
+        if(_lineDashBottom){
+            CGFloat lengths[] = {_lineDashBottom,_lineDashBottom};
+            CGContextSetLineDash(context, 0, lengths,2);
+        }else{
+            CGContextSetLineDash(context, 0, 0, 0);
+        }
         CGContextSetLineWidth(context, _lineWidthBottom);
         CGContextSetStrokeColorWithColor(context, (_lineColorBottom?_lineColorBottom:[UIColor blackColor]).CGColor);
         CGContextAddArc(context, _radiusBottomLeft, self.frame.size.height-_radiusBottomLeft, _radiusBottomLeft-halfLineWidthBottom, M_PI-M_PI_4+(_needLineLeft?0:M_PI_4), M_PI_2, 1);
@@ -121,6 +138,12 @@
         CGContextStrokePath(context);
     }
     if (_needLineRight) {
+        if(_lineDashRight){
+            CGFloat lengths[] = {_lineDashRight,_lineDashRight};
+            CGContextSetLineDash(context, 0, lengths,2);
+        }else{
+            CGContextSetLineDash(context, 0, 0, 0);
+        }
         CGContextSetLineWidth(context, _lineWidthRight);
         CGContextSetStrokeColorWithColor(context, (_lineColorRight?_lineColorRight:[UIColor blackColor]).CGColor);
         CGContextAddArc(context, self.frame.size.width-_radiusBottomRight, self.frame.size.height-_radiusBottomRight, _radiusBottomRight-halfLineWidthRight, M_PI_4+(_needLineBottom?0:M_PI_4), 0, 1);
@@ -135,11 +158,11 @@
 
 -(UIBezierPath*)bezierPathForBorder{
     if (self.needUpdatePathForBorder||!self.pathForBorder) {
-        CGFloat halfLineWidthTop=_lineWidthTop/2;
-        CGFloat halfLineWidthLeft=_lineWidthLeft/2;
-        CGFloat halfLineWidthBottom=_lineWidthBottom/2;
-        CGFloat halfLineWidthRight=_lineWidthRight/2;
-        UIBezierPath *bezierPath=[UIBezierPath bezierPath];
+        CGFloat halfLineWidthTop = _lineWidthTop/2;
+        CGFloat halfLineWidthLeft = _lineWidthLeft/2;
+        CGFloat halfLineWidthBottom = _lineWidthBottom/2;
+        CGFloat halfLineWidthRight = _lineWidthRight/2;
+        UIBezierPath *bezierPath = [UIBezierPath bezierPath];
         [bezierPath moveToPoint:CGPointMake(self.frame.size.width-_radiusTopRight, 0)];
         [bezierPath addLineToPoint:CGPointMake(_radiusTopLeft, 0)];
         [bezierPath addQuadCurveToPoint:CGPointMake(0, _radiusTopLeft) controlPoint:CGPointMake(halfLineWidthLeft, halfLineWidthTop)];
@@ -150,15 +173,15 @@
         [bezierPath addQuadCurveToPoint:CGPointMake(self.frame.size.width, self.frame.size.height-_radiusBottomRight) controlPoint:CGPointMake(self.frame.size.width-halfLineWidthRight, self.frame.size.height-halfLineWidthBottom)];
         [bezierPath addLineToPoint:CGPointMake(self.frame.size.width, _radiusTopRight)];
         [bezierPath addQuadCurveToPoint:CGPointMake(self.frame.size.width-_radiusTopRight, 0) controlPoint:CGPointMake(self.frame.size.width-halfLineWidthRight, halfLineWidthTop)];
-        self.pathForBorder=bezierPath;
-        self.needUpdatePathForBorder=false;
+        self.pathForBorder = bezierPath;
+        self.needUpdatePathForBorder = false;
     }
     return self.pathForBorder;
 }
 
 -(void)willMoveToSuperview:(UIView *)newSuperview{
     if ([self clipsToBoundsWithBorder]) {
-        UIBezierPath *bezierPath=[self bezierPathForBorder];
+        UIBezierPath *bezierPath = [self bezierPathForBorder];
         CAShapeLayer* maskLayer = [CAShapeLayer new];
         maskLayer.frame = self.bounds;
         maskLayer.path = bezierPath.CGPath;
@@ -168,83 +191,89 @@
 
 -(void)setFrame:(CGRect)frame{
     if (!CGRectEqualToRect(self.frame, frame)) {
-        self.needUpdatePathForBorder=true;
+        self.needUpdatePathForBorder = true;
     }
     [super setFrame:frame];
     [self setNeedsDisplay];
 }
 
 -(void)setNeedLineTop:(BOOL)needTop left:(BOOL)needLeft bottom:(BOOL)needBottom right:(BOOL)needRight{
-    self.needLineTop=needTop;
-    self.needLineLeft=needLeft;
-    self.needLineRight=needRight;
-    self.needLineBottom=needBottom;
+    self.needLineTop = needTop;
+    self.needLineLeft = needLeft;
+    self.needLineRight = needRight;
+    self.needLineBottom = needBottom;
 }
 -(void)setLineColorTop:(UIColor *)colorTop left:(UIColor *)colorLeft bottom:(UIColor *)colorBottom right:(UIColor *)colorRight{
-    self.lineColorTop=colorTop;
-    self.lineColorLeft=colorLeft;
-    self.lineColorBottom=colorBottom;
-    self.lineColorRight=colorRight;
+    self.lineColorTop = colorTop;
+    self.lineColorLeft = colorLeft;
+    self.lineColorBottom = colorBottom;
+    self.lineColorRight = colorRight;
 }
 -(void)setLineWidthTop:(CGFloat)widthTop left:(CGFloat)widthLeft bottom:(CGFloat)widthBottom right:(CGFloat)widthRight{
-    self.lineWidthTop=widthTop;
-    self.lineWidthLeft=widthLeft;
-    self.lineWidthBottom=widthBottom;
-    self.lineWidthRight=widthRight;
+    self.lineWidthTop = widthTop;
+    self.lineWidthLeft = widthLeft;
+    self.lineWidthBottom = widthBottom;
+    self.lineWidthRight = widthRight;
 }
 -(void)setRadiusTopLeft:(CGFloat)topLeft topRight:(CGFloat)topRight bottomLeft:(CGFloat)bottomLeft bottomRight:(CGFloat)bottomRight{
-    self.radiusTopLeft=topLeft;
-    self.radiusTopRight=topRight;
-    self.radiusBottomLeft=bottomLeft;
-    self.radiusBottomRight=bottomRight;
+    self.radiusTopLeft = topLeft;
+    self.radiusTopRight = topRight;
+    self.radiusBottomLeft = bottomLeft;
+    self.radiusBottomRight = bottomRight;
+}
+-(void)setLineDashTop:(CGFloat)top left:(CGFloat)left bottom:(CGFloat)bottom right:(CGFloat)right{
+    self.lineDashTop = top;
+    self.lineDashLeft = left;
+    self.lineDashBottom = bottom;
+    self.lineDashRight = right;
 }
 
 -(void)setRadiusBottomLeft:(CGFloat)radiusBottomLeft{
-    if (_radiusBottomLeft!=radiusBottomLeft) {
-        _radiusBottomLeft=radiusBottomLeft;
-        self.needUpdatePathForBorder=true;
+    if (_radiusBottomLeft != radiusBottomLeft) {
+        _radiusBottomLeft = radiusBottomLeft;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setRadiusBottomRight:(CGFloat)radiusBottomRight{
-    if (_radiusBottomRight!=radiusBottomRight) {
-        _radiusBottomRight=radiusBottomRight;
-        self.needUpdatePathForBorder=true;
+    if (_radiusBottomRight != radiusBottomRight) {
+        _radiusBottomRight = radiusBottomRight;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setRadiusTopLeft:(CGFloat)radiusTopLeft{
-    if (_radiusTopLeft!=radiusTopLeft) {
-        _radiusTopLeft=radiusTopLeft;
-        self.needUpdatePathForBorder=true;
+    if (_radiusTopLeft != radiusTopLeft) {
+        _radiusTopLeft = radiusTopLeft;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setRadiusTopRight:(CGFloat)radiusTopRight{
-    if (_radiusTopRight!=radiusTopRight) {
-        _radiusTopRight=radiusTopRight;
-        self.needUpdatePathForBorder=true;
+    if (_radiusTopRight != radiusTopRight) {
+        _radiusTopRight = radiusTopRight;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setLineWidthBottom:(CGFloat)lineWidthBottom{
-    if (_lineWidthBottom!=lineWidthBottom) {
-        _lineWidthBottom=lineWidthBottom;
-        self.needUpdatePathForBorder=true;
+    if (_lineWidthBottom != lineWidthBottom) {
+        _lineWidthBottom = lineWidthBottom;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setLineWidthLeft:(CGFloat)lineWidthLeft{
-    if (_lineWidthLeft!=lineWidthLeft) {
-        _lineWidthLeft=lineWidthLeft;
-        self.needUpdatePathForBorder=true;
+    if (_lineWidthLeft != lineWidthLeft) {
+        _lineWidthLeft = lineWidthLeft;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setLineWidthTop:(CGFloat)lineWidthTop{
-    if (_lineWidthTop!=lineWidthTop) {
-        _lineWidthTop=lineWidthTop;
-        self.needUpdatePathForBorder=true;
+    if (_lineWidthTop != lineWidthTop) {
+        _lineWidthTop = lineWidthTop;
+        self.needUpdatePathForBorder = true;
     }
 }
 -(void)setLineWidthRight:(CGFloat)lineWidthRight{
-    if (_lineWidthRight!=lineWidthRight) {
-        _lineWidthRight=lineWidthRight;
-        self.needUpdatePathForBorder=true;
+    if (_lineWidthRight != lineWidthRight) {
+        _lineWidthRight = lineWidthRight;
+        self.needUpdatePathForBorder = true;
     }
 }
 

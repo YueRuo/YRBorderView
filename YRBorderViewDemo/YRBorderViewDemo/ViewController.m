@@ -32,11 +32,12 @@
         [self.view addSubview:borderView];
     }
     
-    {//demo2给边线加上弧度
+    {//demo2给边线加上弧度，并且设置一条边为虚线
         YRBorderView *borderView=[[YRBorderView alloc]initWithFrame:CGRectMake(170, 40, 100, 90)];
         [borderView setNeedLineTop:true left:true bottom:true right:true];
         [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];//设置不同的颜色
         [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
+        [borderView setLineDashRight:10];//右侧线条是虚线
         [borderView setRadiusTopLeft:28 topRight:26 bottomLeft:0 bottomRight:0];//边线加弧度
         [borderView setFillColor:fillColor];//增加内部填充颜色
         [borderView setBackgroundColor:viewBackgroundColor];
