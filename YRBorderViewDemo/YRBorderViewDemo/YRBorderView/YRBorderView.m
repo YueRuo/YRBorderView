@@ -70,11 +70,6 @@
 - (void)drawRect:(CGRect)rect
 {
     // Drawing code
-//    CGFloat startX = 0;
-//    CGFloat endX = self.frame.size.width;
-//    CGFloat startY = 0;
-//    CGFloat endY = self.frame.size.height;
-    
     CGFloat halfLineWidthTop = _lineWidthTop/2;
     CGFloat halfLineWidthLeft = _lineWidthLeft/2;
     CGFloat halfLineWidthBottom = _lineWidthBottom/2;
@@ -94,8 +89,8 @@
     //画线
     if (_needLineTop) {
         if(_lineDashTop){
-            CGFloat lengths[] = {_lineDashTop,_lineDashTop};
-            CGContextSetLineDash(context, 0, lengths,2);
+            CGFloat lengths[] = {_lineDashTop};
+            CGContextSetLineDash(context, 0, lengths,1);
         }else{
             CGContextSetLineDash(context, 0, 0, 0);
         }
@@ -109,8 +104,8 @@
     }
     if (_needLineLeft) {
         if(_lineDashLeft){
-            CGFloat lengths[] = {_lineDashLeft,_lineDashLeft};
-            CGContextSetLineDash(context, 0, lengths,2);
+            CGFloat lengths[] = {_lineDashLeft};
+            CGContextSetLineDash(context, 0, lengths,1);
         }else{
             CGContextSetLineDash(context, 0, 0, 0);
         }
@@ -124,8 +119,8 @@
     }
     if (_needLineBottom) {
         if(_lineDashBottom){
-            CGFloat lengths[] = {_lineDashBottom,_lineDashBottom};
-            CGContextSetLineDash(context, 0, lengths,2);
+            CGFloat lengths[] = {_lineDashBottom};
+            CGContextSetLineDash(context, 0, lengths,1);
         }else{
             CGContextSetLineDash(context, 0, 0, 0);
         }
@@ -139,8 +134,8 @@
     }
     if (_needLineRight) {
         if(_lineDashRight){
-            CGFloat lengths[] = {_lineDashRight,_lineDashRight};
-            CGContextSetLineDash(context, 0, lengths,2);
+            CGFloat lengths[] = {_lineDashRight};
+            CGContextSetLineDash(context, 0, lengths,1);
         }else{
             CGContextSetLineDash(context, 0, 0, 0);
         }
