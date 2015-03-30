@@ -158,21 +158,17 @@
 
 -(UIBezierPath*)bezierPathForBorder{
     if (self.needUpdatePathForBorder||!self.pathForBorder) {
-        CGFloat halfLineWidthTop = _lineWidthTop/2;
-        CGFloat halfLineWidthLeft = _lineWidthLeft/2;
-        CGFloat halfLineWidthBottom = _lineWidthBottom/2;
-        CGFloat halfLineWidthRight = _lineWidthRight/2;
         UIBezierPath *bezierPath = [UIBezierPath bezierPath];
         [bezierPath moveToPoint:CGPointMake(self.frame.size.width-_radiusTopRight, 0)];
         [bezierPath addLineToPoint:CGPointMake(_radiusTopLeft, 0)];
-        [bezierPath addQuadCurveToPoint:CGPointMake(0, _radiusTopLeft) controlPoint:CGPointMake(halfLineWidthLeft, halfLineWidthTop)];
+        [bezierPath addArcWithCenter:CGPointMake(_radiusTopLeft, _radiusTopLeft) radius:_radiusTopLeft startAngle:M_PI+M_PI_2 endAngle:M_PI clockwise:0];
         [bezierPath addLineToPoint:CGPointMake(0, self.frame.size.height-_radiusBottomLeft)];
-        [bezierPath addQuadCurveToPoint:CGPointMake(_radiusBottomLeft, self.frame.size.height) controlPoint:CGPointMake(halfLineWidthLeft, self.frame.size.height-halfLineWidthBottom)];
-        [bezierPath moveToPoint:CGPointMake(_radiusBottomLeft, self.frame.size.height)];
+        [bezierPath addArcWithCenter:CGPointMake(_radiusBottomLeft, self.frame.size.height-_radiusBottomLeft) radius:_radiusBottomLeft startAngle: M_PI endAngle:M_PI_2 clockwise:0];
         [bezierPath addLineToPoint:CGPointMake(self.frame.size.width-_radiusBottomRight, self.frame.size.height)];
-        [bezierPath addQuadCurveToPoint:CGPointMake(self.frame.size.width, self.frame.size.height-_radiusBottomRight) controlPoint:CGPointMake(self.frame.size.width-halfLineWidthRight, self.frame.size.height-halfLineWidthBottom)];
+        [bezierPath addArcWithCenter:CGPointMake(self.frame.size.width-_radiusBottomRight, self.frame.size.height-_radiusBottomRight) radius:_radiusBottomRight startAngle: M_PI_2 endAngle:0 clockwise:0];
         [bezierPath addLineToPoint:CGPointMake(self.frame.size.width, _radiusTopRight)];
-        [bezierPath addQuadCurveToPoint:CGPointMake(self.frame.size.width-_radiusTopRight, 0) controlPoint:CGPointMake(self.frame.size.width-halfLineWidthRight, halfLineWidthTop)];
+        [bezierPath addArcWithCenter:CGPointMake(self.frame.size.width-_radiusTopRight, _radiusTopRight) radius:_radiusTopRight startAngle: 0 endAngle:-M_PI_2 clockwise:0];
+
         self.pathForBorder = bezierPath;
         self.needUpdatePathForBorder = false;
     }

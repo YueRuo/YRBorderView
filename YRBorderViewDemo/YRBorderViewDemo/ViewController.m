@@ -68,8 +68,18 @@
         [self.view addSubview:borderView];
     }
     
-    {//demo5处理个圆玩玩
-        YRBorderView *borderView=[[YRBorderView alloc]initWithFrame:CGRectMake(80, 300, 100, 100)];
+    {//demo5虚线边界
+        YRBorderView *borderView=[[YRBorderView alloc]initWithFrame:CGRectMake(30, 300, 100, 100)];
+        [borderView setNeedLineTop:true left:true bottom:true right:true];
+        [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];
+        [borderView setLineWidthTop:2 left:2 bottom:2 right:2];
+        [borderView setBackgroundColor:viewBackgroundColor];
+        [borderView setLineDashTop:1 left:2 bottom:4 right:5];
+        
+        [self.view addSubview:borderView];
+    }
+    {//demo6处理个圆玩玩
+        YRBorderView *borderView=[[YRBorderView alloc]initWithFrame:CGRectMake(170, 300, 100, 100)];
         [borderView setNeedLineTop:true left:true bottom:true right:true];
         [borderView setLineColorTop:[UIColor blueColor] left:[UIColor greenColor] bottom:[UIColor brownColor] right:[UIColor redColor]];
         [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
