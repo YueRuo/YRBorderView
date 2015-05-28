@@ -25,6 +25,8 @@
 #import <UIKit/UIKit.h>
 
 @interface YRBorderView : UIView
+@property (assign,nonatomic) UIEdgeInsets contentEdgeInsets;
+
 @property (assign,nonatomic) BOOL needLineTop;
 @property (assign,nonatomic) BOOL needLineLeft;
 @property (assign,nonatomic) BOOL needLineBottom;

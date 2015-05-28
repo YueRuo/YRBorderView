@@ -89,6 +89,15 @@
         [borderView setClipsToBoundsWithBorder:true];//裁剪掉边线外面的区域
         [self.view addSubview:borderView];
     }
+    {//demo7设置内边距
+        YRBorderView *borderView=[[YRBorderView alloc]initWithFrame:CGRectMake(40, 420, 200, 100)];
+        [borderView setNeedLineTop:true left:true bottom:true right:true];
+        [borderView setLineColorTop:[UIColor brownColor] left:[UIColor brownColor] bottom:[UIColor brownColor] right:[UIColor brownColor]];//用同一色边线
+        [borderView setLineWidthTop:6 left:6 bottom:6 right:6];
+        [borderView setContentEdgeInsets:UIEdgeInsetsMake(15, 20, 4, 10)];//设置边距
+        [borderView setBackgroundColor:[UIColor grayColor]];
+        [self.view addSubview:borderView];
+    }
 }
 
 - (void)didReceiveMemoryWarning

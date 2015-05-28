@@ -86,6 +86,11 @@
         UIBezierPath *bezierPath = [self bezierPathForBorder];
         [bezierPath fill];
     }
+    
+    CGFloat startX = _contentEdgeInsets.left;
+    CGFloat startY = _contentEdgeInsets.top;
+    CGFloat endX = self.frame.size.width-_contentEdgeInsets.right;
+    CGFloat endY = self.frame.size.height-_contentEdgeInsets.bottom;
     //画线
     if (_needLineTop) {
         if(_lineDashTop){
@@ -96,10 +101,10 @@
         }
         CGContextSetLineWidth(context, _lineWidthTop);
         CGContextSetStrokeColorWithColor(context, (_lineColorTop?_lineColorTop:[UIColor blackColor]).CGColor);
-        CGContextAddArc(context, self.frame.size.width-_radiusTopRight, _radiusTopRight, _radiusTopRight-halfLineWidthTop, -M_PI_4+(_needLineRight?0:M_PI_4), -M_PI_2, 1);
-        CGContextMoveToPoint(context, self.frame.size.width-_radiusTopRight, halfLineWidthTop);
-        CGContextAddLineToPoint(context, _radiusTopLeft, halfLineWidthTop);
-        CGContextAddArc(context, _radiusTopLeft, _radiusTopLeft, _radiusTopLeft-halfLineWidthTop, -M_PI_2, -M_PI_2-M_PI_4-(_needLineLeft?0:M_PI_4), 1);
+        CGContextAddArc(context, endX-_radiusTopRight, startY+_radiusTopRight, _radiusTopRight-halfLineWidthTop, -M_PI_4+(_needLineRight?0:M_PI_4), -M_PI_2, 1);
+        CGContextMoveToPoint(context, endX-_radiusTopRight, startY+halfLineWidthTop);
+        CGContextAddLineToPoint(context, _radiusTopLeft+_contentEdgeInsets.left, halfLineWidthTop+_contentEdgeInsets.top);
+        CGContextAddArc(context, startX+_radiusTopLeft, startY+_radiusTopLeft, _radiusTopLeft-halfLineWidthTop, -M_PI_2, -M_PI_2-M_PI_4-(_needLineLeft?0:M_PI_4), 1);
         CGContextStrokePath(context);
     }
     if (_needLineLeft) {
@@ -111,10 +116,10 @@
         }
         CGContextSetLineWidth(context, _lineWidthLeft);
         CGContextSetStrokeColorWithColor(context, (_lineColorLeft?_lineColorLeft:[UIColor blackColor]).CGColor);
-        CGContextAddArc(context, _radiusTopLeft, _radiusTopLeft, _radiusTopLeft-halfLineWidthLeft, -M_PI, -M_PI_2-M_PI_4+(_needLineTop?0:M_PI_4), 0);
-        CGContextMoveToPoint(context, halfLineWidthLeft, _radiusTopLeft);
-        CGContextAddLineToPoint(context, halfLineWidthLeft, self.frame.size.height-_radiusBottomLeft);
-        CGContextAddArc(context, _radiusBottomLeft, self.frame.size.height-_radiusBottomLeft, _radiusBottomLeft-halfLineWidthLeft, M_PI, M_PI-M_PI_4-(_needLineBottom?0:M_PI_4), 1);
+        CGContextAddArc(context, startX+_radiusTopLeft, startY+_radiusTopLeft, _radiusTopLeft-halfLineWidthLeft, -M_PI, -M_PI_2-M_PI_4+(_needLineTop?0:M_PI_4), 0);
+        CGContextMoveToPoint(context, startX+halfLineWidthLeft, startY+_radiusTopLeft);
+        CGContextAddLineToPoint(context, startX+halfLineWidthLeft, endY-_radiusBottomLeft);
+        CGContextAddArc(context, startX+_radiusBottomLeft, endY-_radiusBottomLeft, _radiusBottomLeft-halfLineWidthLeft, M_PI, M_PI-M_PI_4-(_needLineBottom?0:M_PI_4), 1);
         CGContextStrokePath(context);
     }
     if (_needLineBottom) {
@@ -126,10 +131,10 @@
         }
         CGContextSetLineWidth(context, _lineWidthBottom);
         CGContextSetStrokeColorWithColor(context, (_lineColorBottom?_lineColorBottom:[UIColor blackColor]).CGColor);
-        CGContextAddArc(context, _radiusBottomLeft, self.frame.size.height-_radiusBottomLeft, _radiusBottomLeft-halfLineWidthBottom, M_PI-M_PI_4+(_needLineLeft?0:M_PI_4), M_PI_2, 1);
-        CGContextMoveToPoint(context, _radiusBottomLeft, self.frame.size.height-halfLineWidthBottom);
-        CGContextAddLineToPoint(context, self.frame.size.width-_radiusBottomRight, self.frame.size.height-halfLineWidthBottom);
-        CGContextAddArc(context, self.frame.size.width-_radiusBottomRight, self.frame.size.height-_radiusBottomRight, _radiusBottomRight-halfLineWidthBottom, M_PI_2, M_PI_4-(_needLineRight?0:M_PI_4), 1);
+        CGContextAddArc(context, startX+_radiusBottomLeft, endY-_radiusBottomLeft, _radiusBottomLeft-halfLineWidthBottom, M_PI-M_PI_4+(_needLineLeft?0:M_PI_4), M_PI_2, 1);
+        CGContextMoveToPoint(context, startX+_radiusBottomLeft, endY-halfLineWidthBottom);
+        CGContextAddLineToPoint(context, endX-_radiusBottomRight, endY-halfLineWidthBottom);
+        CGContextAddArc(context, endX-_radiusBottomRight, endY-_radiusBottomRight, _radiusBottomRight-halfLineWidthBottom, M_PI_2, M_PI_4-(_needLineRight?0:M_PI_4), 1);
         CGContextStrokePath(context);
     }
     if (_needLineRight) {
@@ -141,10 +146,10 @@
         }
         CGContextSetLineWidth(context, _lineWidthRight);
         CGContextSetStrokeColorWithColor(context, (_lineColorRight?_lineColorRight:[UIColor blackColor]).CGColor);
-        CGContextAddArc(context, self.frame.size.width-_radiusBottomRight, self.frame.size.height-_radiusBottomRight, _radiusBottomRight-halfLineWidthRight, M_PI_4+(_needLineBottom?0:M_PI_4), 0, 1);
-        CGContextMoveToPoint(context, self.frame.size.width-halfLineWidthRight, self.frame.size.height-_radiusBottomRight);
-        CGContextAddLineToPoint(context, self.frame.size.width-halfLineWidthRight, _radiusTopRight);
-        CGContextAddArc(context, self.frame.size.width-_radiusTopRight, _radiusTopRight, _radiusTopRight-halfLineWidthRight, 0, -M_PI_4-(_needLineTop?0:M_PI_4), 1);
+        CGContextAddArc(context, endX-_radiusBottomRight, endY-_radiusBottomRight, _radiusBottomRight-halfLineWidthRight, M_PI_4+(_needLineBottom?0:M_PI_4), 0, 1);
+        CGContextMoveToPoint(context, endX-halfLineWidthRight, endY-_radiusBottomRight);
+        CGContextAddLineToPoint(context, endX-halfLineWidthRight, startY+_radiusTopRight);
+        CGContextAddArc(context, endX-_radiusTopRight, startY+_radiusTopRight, _radiusTopRight-halfLineWidthRight, 0, -M_PI_4-(_needLineTop?0:M_PI_4), 1);
         CGContextStrokePath(context);
     }
     CGContextStrokePath(context);
@@ -153,17 +158,21 @@
 
 -(UIBezierPath*)bezierPathForBorder{
     if (self.needUpdatePathForBorder||!self.pathForBorder) {
+        CGFloat startX = _contentEdgeInsets.left;
+        CGFloat startY = _contentEdgeInsets.top;
+        CGFloat endX = self.frame.size.width-_contentEdgeInsets.right;
+        CGFloat endY = self.frame.size.height-_contentEdgeInsets.bottom;
         UIBezierPath *bezierPath = [UIBezierPath bezierPath];
-        [bezierPath moveToPoint:CGPointMake(self.frame.size.width-_radiusTopRight, 0)];
-        [bezierPath addLineToPoint:CGPointMake(_radiusTopLeft, 0)];
-        [bezierPath addArcWithCenter:CGPointMake(_radiusTopLeft, _radiusTopLeft) radius:_radiusTopLeft startAngle:M_PI+M_PI_2 endAngle:M_PI clockwise:0];
-        [bezierPath addLineToPoint:CGPointMake(0, self.frame.size.height-_radiusBottomLeft)];
-        [bezierPath addArcWithCenter:CGPointMake(_radiusBottomLeft, self.frame.size.height-_radiusBottomLeft) radius:_radiusBottomLeft startAngle: M_PI endAngle:M_PI_2 clockwise:0];
-        [bezierPath addLineToPoint:CGPointMake(self.frame.size.width-_radiusBottomRight, self.frame.size.height)];
-        [bezierPath addArcWithCenter:CGPointMake(self.frame.size.width-_radiusBottomRight, self.frame.size.height-_radiusBottomRight) radius:_radiusBottomRight startAngle: M_PI_2 endAngle:0 clockwise:0];
-        [bezierPath addLineToPoint:CGPointMake(self.frame.size.width, _radiusTopRight)];
-        [bezierPath addArcWithCenter:CGPointMake(self.frame.size.width-_radiusTopRight, _radiusTopRight) radius:_radiusTopRight startAngle: 0 endAngle:-M_PI_2 clockwise:0];
-
+        [bezierPath moveToPoint:CGPointMake(endX-_radiusTopRight, startY)];
+        [bezierPath addLineToPoint:CGPointMake(startX+_radiusTopLeft, startY)];
+        [bezierPath addArcWithCenter:CGPointMake(startX+_radiusTopLeft, startY+_radiusTopLeft) radius:_radiusTopLeft startAngle:M_PI+M_PI_2 endAngle:M_PI clockwise:0];
+        [bezierPath addLineToPoint:CGPointMake(startX, endY-_radiusBottomLeft)];
+        [bezierPath addArcWithCenter:CGPointMake(startX+_radiusBottomLeft, endY-_radiusBottomLeft) radius:_radiusBottomLeft startAngle: M_PI endAngle:M_PI_2 clockwise:0];
+        [bezierPath addLineToPoint:CGPointMake(endX-_radiusBottomRight, endY)];
+        [bezierPath addArcWithCenter:CGPointMake(endX-_radiusBottomRight, endY-_radiusBottomRight) radius:_radiusBottomRight startAngle: M_PI_2 endAngle:0 clockwise:0];
+        [bezierPath addLineToPoint:CGPointMake(endX, startY+_radiusTopRight)];
+        [bezierPath addArcWithCenter:CGPointMake(endX-_radiusTopRight, startY+_radiusTopRight) radius:_radiusTopRight startAngle: 0 endAngle:-M_PI_2 clockwise:0];
+        
         self.pathForBorder = bezierPath;
         self.needUpdatePathForBorder = false;
     }
@@ -177,6 +186,13 @@
         maskLayer.frame = self.bounds;
         maskLayer.path = bezierPath.CGPath;
         self.layer.mask = maskLayer;
+    }
+}
+-(void)setContentEdgeInsets:(UIEdgeInsets)contentEdgeInsets{
+    if (!UIEdgeInsetsEqualToEdgeInsets(contentEdgeInsets, _contentEdgeInsets)) {
+         _contentEdgeInsets = contentEdgeInsets;
+        self.needUpdatePathForBorder = true;
+        [self setNeedsDisplay];
     }
 }
 
