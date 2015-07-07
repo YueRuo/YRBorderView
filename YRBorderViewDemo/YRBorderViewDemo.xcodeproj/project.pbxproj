@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5F36FA211B4B80BB008E796E /* YRBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F36FA201B4B80BB008E796E /* YRBorderView.m */; };
 		5FD3DD7918DDD4C900237A0A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD3DD7818DDD4C900237A0A /* Foundation.framework */; };
 		5FD3DD7B18DDD4C900237A0A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD3DD7A18DDD4C900237A0A /* CoreGraphics.framework */; };
 		5FD3DD7D18DDD4C900237A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD3DD7C18DDD4C900237A0A /* UIKit.framework */; };
@@ -22,7 +23,6 @@
 		5FD3DD9D18DDD4C900237A0A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FD3DD7C18DDD4C900237A0A /* UIKit.framework */; };
 		5FD3DDA518DDD4C900237A0A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5FD3DDA318DDD4C900237A0A /* InfoPlist.strings */; };
 		5FD3DDA718DDD4C900237A0A /* YRBorderViewDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3DDA618DDD4C900237A0A /* YRBorderViewDemoTests.m */; };
-		5FD3DDB318DDD53500237A0A /* YRBorderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FD3DDB218DDD53500237A0A /* YRBorderView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5F36FA1F1B4B80BB008E796E /* YRBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRBorderView.h; sourceTree = "<group>"; };
+		5F36FA201B4B80BB008E796E /* YRBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRBorderView.m; sourceTree = "<group>"; };
 		5FD3DD7518DDD4C900237A0A /* YRBorderViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YRBorderViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FD3DD7818DDD4C900237A0A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		5FD3DD7A18DDD4C900237A0A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -56,8 +58,6 @@
 		5FD3DDA218DDD4C900237A0A /* YRBorderViewDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "YRBorderViewDemoTests-Info.plist"; sourceTree = "<group>"; };
 		5FD3DDA418DDD4C900237A0A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		5FD3DDA618DDD4C900237A0A /* YRBorderViewDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YRBorderViewDemoTests.m; sourceTree = "<group>"; };
-		5FD3DDB118DDD53500237A0A /* YRBorderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YRBorderView.h; sourceTree = "<group>"; };
-		5FD3DDB218DDD53500237A0A /* YRBorderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YRBorderView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +84,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5F36FA1E1B4B80BB008E796E /* YRBorderView */ = {
+			isa = PBXGroup;
+			children = (
+				5F36FA1F1B4B80BB008E796E /* YRBorderView.h */,
+				5F36FA201B4B80BB008E796E /* YRBorderView.m */,
+			);
+			name = YRBorderView;
+			path = ../YRBorderView;
+			sourceTree = "<group>";
+		};
 		5FD3DD6C18DDD4C900237A0A = {
 			isa = PBXGroup;
 			children = (
+				5F36FA1E1B4B80BB008E796E /* YRBorderView */,
 				5FD3DD7E18DDD4C900237A0A /* YRBorderViewDemo */,
 				5FD3DDA018DDD4C900237A0A /* YRBorderViewDemoTests */,
 				5FD3DD7718DDD4C900237A0A /* Frameworks */,
@@ -117,7 +128,6 @@
 		5FD3DD7E18DDD4C900237A0A /* YRBorderViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				5FD3DDB018DDD53500237A0A /* YRBorderView */,
 				5FD3DD8718DDD4C900237A0A /* AppDelegate.h */,
 				5FD3DD8818DDD4C900237A0A /* AppDelegate.m */,
 				5FD3DD8A18DDD4C900237A0A /* Main_iPhone.storyboard */,
@@ -157,15 +167,6 @@
 				5FD3DDA318DDD4C900237A0A /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		5FD3DDB018DDD53500237A0A /* YRBorderView */ = {
-			isa = PBXGroup;
-			children = (
-				5FD3DDB118DDD53500237A0A /* YRBorderView.h */,
-				5FD3DDB218DDD53500237A0A /* YRBorderView.m */,
-			);
-			path = YRBorderView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -267,7 +268,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5FD3DD9218DDD4C900237A0A /* ViewController.m in Sources */,
-				5FD3DDB318DDD53500237A0A /* YRBorderView.m in Sources */,
+				5F36FA211B4B80BB008E796E /* YRBorderView.m in Sources */,
 				5FD3DD8918DDD4C900237A0A /* AppDelegate.m in Sources */,
 				5FD3DD8518DDD4C900237A0A /* main.m in Sources */,
 			);
