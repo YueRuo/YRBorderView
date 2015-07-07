@@ -21,10 +21,11 @@ Pod::Spec.new do |s|
 
   s.description  = <<-DESC
                    a light weight and easy to add border for view.
+                   set each line width,color,corner radius,dash..
                    DESC
 
   s.homepage     = "https://github.com/YueRuo/YRBorderView"
-  s.screenshots  = "https://github.com/YueRuo/YRBorderView/blob/master/YRBorderViewDemo效果图.png"
+#s.screenshots  = "https://github.com/YueRuo/YRBorderView/blob/master/YRBorderViewDemo效果图.png"
 #,"www.example.com/screenshots_2.gif"
 
 
