@@ -1,5 +1,9 @@
 YRBorderView
 ============
+支持Cocoapods安装
+
+	   pod 'YRBorderView', '~> 1.0.0'
+
 
 一个可以添加各种边线效果的View  
 
