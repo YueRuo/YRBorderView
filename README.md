@@ -1,6 +1,6 @@
 YRBorderView
 ============
-支持Cocoapods安装
+支持CocoaPods安装
 
 	   pod 'YRBorderView', '~> 1.0.0'
 
